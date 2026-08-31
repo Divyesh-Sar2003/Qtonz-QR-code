@@ -7,7 +7,7 @@
     <title>Qtonz Infosoft Pvt Ltd - Links</title>
     <meta name="description"
         content="Connect with Qtonz Infosoft Pvt Ltd - India's Fastest Growing Mobile App & Software Development Company">
-    <link rel="icon" type="image/x-icon" href="/Q.svg">
+    <link rel="icon" type="image/x-icon" href="Q.svg">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -961,7 +961,7 @@
                 </div>
             </a>
             <!-- Google Reviews -->
-            <a href="https://www.google.com/search?q=Qtonz+Infosoft+Pvt+Ltd+reviews#lrd=0x3959cbd300c53cfb:0x12bb26a4e9ff9c66,3,,,,"
+            <a href="https://www.google.com/maps/search/?api=1&query=Qtonz+Infosoft+Pvt+Ltd"
                 target="_blank" class="link-card" id="card-google">
                 <div class="link-icon-wrapper brand-bg-google">
                     <i class="ph-fill ph-google-logo brand-google"></i>
@@ -1411,10 +1411,13 @@
             // Set dynamic year in footer
             document.getElementById('current-year').textContent = new Date().getFullYear();
 
-            // Keep the exact direct Google review link requested for the business review section.
+            // Use a mobile-safe Google review URL: mobile browsers often ignore the old hash-based Google search URL.
             const googleReviewCard = document.getElementById('card-google');
             if (googleReviewCard) {
-                googleReviewCard.href = 'https://www.google.com/search?q=Qtonz+Infosoft+Pvt+Ltd+reviews#lrd=0x3959cbd300c53cfb:0x12bb26a4e9ff9c66,3,,,,';
+                const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+                googleReviewCard.href = isMobile
+                    ? 'https://www.google.com/maps/search/?api=1&query=Qtonz+Infosoft+Pvt+Ltd'
+                    : 'https://www.google.com/search?q=Qtonz+Infosoft+Pvt+Ltd+reviews';
             }
 
             // Toggle expandable groups
