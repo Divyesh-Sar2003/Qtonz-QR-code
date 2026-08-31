@@ -961,7 +961,7 @@
                 </div>
             </a>
             <!-- Google Reviews -->
-            <a href="https://www.google.com/search?q=qtonz#lrd=0x3959cbd300c53cfb:0x12bb26a4e9ff9c66,3,,,,"
+            <a href="https://www.google.com/search?q=Qtonz+Infosoft+Pvt+Ltd+reviews#lrd=0x3959cbd300c53cfb:0x12bb26a4e9ff9c66,3,,,,"
                 target="_blank" class="link-card" id="card-google">
                 <div class="link-icon-wrapper brand-bg-google">
                     <i class="ph-fill ph-google-logo brand-google"></i>
@@ -1410,6 +1410,12 @@
 
             // Set dynamic year in footer
             document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Keep the exact direct Google review link requested for the business review section.
+            const googleReviewCard = document.getElementById('card-google');
+            if (googleReviewCard) {
+                googleReviewCard.href = 'https://www.google.com/search?q=Qtonz+Infosoft+Pvt+Ltd+reviews#lrd=0x3959cbd300c53cfb:0x12bb26a4e9ff9c66,3,,,,';
+            }
 
             // Toggle expandable groups
             const toggleBtns = document.querySelectorAll('.main-toggle-btn');
