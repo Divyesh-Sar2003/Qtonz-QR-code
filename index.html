@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qtonz Infosoft Pvt Ltd - Links</title>
+    <meta name="description"
+        content="Connect with Qtonz Infosoft Pvt Ltd - India's Fastest Growing Mobile App & Software Development Company">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --bg-color: #0f1014;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --card-bg: rgba(24, 24, 27, 0.6);
+            --card-hover: rgba(39, 39, 42, 0.8);
+            --accent: #3b82f6;
+            --border-radius: 12px;
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            background-image:
+                radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 100% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 0% 100%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ==============================
+           INTRO OVERLAY
+           ============================== */
+        #intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #intro-overlay.fading {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .intro-logo-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Start large — will be animated via JS */
+            width: 160px;
+            height: 160px;
+            transition: none;
+            /* JS controls transitions */
+        }
+
+        .intro-logo-img {
+            width: 65%;
+            height: 65%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            filter: brightness(1);
+        }
+
+        .intro-logo-img.visible {
+            opacity: 1;
+        }
+
+        /* Spinning ring */
+        .intro-ring {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2.5px solid transparent;
+            border-top-color: rgba(59, 130, 246, 0.9);
+            border-right-color: rgba(139, 92, 246, 0.4);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            animation: introSpin 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+        }
+
+        .intro-ring.visible {
+            opacity: 1;
+        }
+
+        .intro-ring-glow {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            border-radius: 50%;
+            border: 1px solid transparent;
+            border-top-color: rgba(59, 130, 246, 0.2);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            animation: introSpin 1.8s linear infinite reverse;
+        }
+
+        .intro-ring-glow.visible {
+            opacity: 1;
+        }
+
+        @keyframes introSpin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ==============================
+           MAIN CONTENT — hidden until reveal
+           ============================== */
+        .container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* All content sections start invisible; JS reveals them */
+        .top-actions,
+        .profile-title,
+        .profile-subtitle,
+        .social-links,
+        .links-container>.link-card,
+        .expandable-group,
+        .footer {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        /* Profile image starts invisible — the intro logo morphs into it */
+        .profile-img-container {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+            opacity: 0;
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3);
+            transition: opacity 0.4s ease;
+        }
+
+        .profile-img-container.revealed {
+            opacity: 1;
+        }
+
+        /* Reveal animation class */
+        .reveal-animate {
+            animation: revealSlideUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+        }
+
+        @keyframes revealSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Top Actions */
+        .top-actions {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .icon-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            font-size: 1.25rem;
+        }
+
+        .icon-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Profile Section */
+        .profile {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            width: 100%;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: var(--bg-color);
+            border: 4px solid var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .profile-img i {
+            font-size: 32px;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, #3b82f6, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .profile-subtitle {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            max-width: 90%;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* Social Icons */
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .social-link {
+            color: var(--text-primary);
+            font-size: 1.75rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-link:hover {
+            color: var(--text-primary);
+            transform: translateY(-5px) scale(1.15);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        }
+
+        /* Link Cards */
+        .links-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 4rem;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            background-color: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: var(--transition);
+        }
+
+        .link-card:hover {
+            background-color: var(--card-hover);
+            transform: translateY(-3px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .link-card:hover::before {
+            left: 100%;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .link-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.25rem;
+            flex-shrink: 0;
+            font-size: 1.75rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .link-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .link-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .link-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .link-action {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+        }
+
+        .link-card:hover .link-action {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        /* Expandable Group */
+        .expandable-group {
+            width: 100%;
+        }
+
+        .main-toggle-btn {
+            width: 100%;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            text-align: left;
+            font-family: inherit;
+            position: relative;
+            z-index: 2;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .main-toggle-btn[aria-expanded="true"] .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .main-toggle-btn[aria-expanded="true"] {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(24, 24, 27, 0.4);
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-toggle-btn[aria-expanded="true"]+.expandable-content {
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-top: none;
+            box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        .sub-links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+
+        .sub-link-card {
+            display: flex;
+            align-items: center;
+            background-color: rgba(39, 39, 42, 0.5);
+            padding: 0.65rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .sub-link-card:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            transform: translateX(6px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .sub-profile-img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+            border: 2px solid rgba(10, 102, 194, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--text-primary);
+            color: var(--bg-color);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
+            background-color: #f4f4f5;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+            text-decoration: underline;
+        }
+
+        /* Specific Icon Branding Colors */
+        .brand-google {
+            color: #ea4335;
+        }
+
+        .brand-whatsapp {
+            color: #25D366;
+        }
+
+        .brand-instagram {
+            background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-youtube {
+            color: #FF0000;
+        }
+
+        .brand-facebook {
+            color: #1877F2;
+        }
+
+        .brand-linkedin {
+            color: #0A66C2;
+        }
+
+        .brand-bg-google {
+            background: rgba(234, 67, 53, 0.1);
+            border-color: rgba(234, 67, 53, 0.2);
+        }
+
+        .brand-bg-whatsapp {
+            background: rgba(37, 211, 102, 0.1);
+            border-color: rgba(37, 211, 102, 0.2);
+        }
+
+        .brand-bg-instagram {
+            background: rgba(225, 48, 108, 0.1);
+            border-color: rgba(225, 48, 108, 0.2);
+        }
+
+        .brand-bg-youtube {
+            background: rgba(255, 0, 0, 0.1);
+            border-color: rgba(255, 0, 0, 0.2);
+        }
+
+        .brand-bg-facebook {
+            background: rgba(24, 119, 242, 0.1);
+            border-color: rgba(24, 119, 242, 0.2);
+        }
+
+        .brand-bg-linkedin {
+            background: rgba(10, 102, 194, 0.1);
+            border-color: rgba(10, 102, 194, 0.2);
+        }
+
+        .brand-bg-qtonz {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        /* Share Modal */
+        .share-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .share-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .share-modal-overlay.active .share-modal-content {
+            transform: translateY(0);
+        }
+
+        .share-modal-content {
+            background: #ffffff;
+            color: #18181b;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 24px 24px 0 0;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @media (min-width: 600px) {
+            .share-modal-overlay {
+                align-items: center;
+            }
+
+            .share-modal-content {
+                border-radius: 24px;
+                transform: translateY(20px) scale(0.95);
+            }
+
+            .share-modal-overlay.active .share-modal-content {
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .share-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .share-modal-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0 auto;
+            transform: translateX(12px);
+        }
+
+        .close-modal-btn {
+            background: rgba(0, 0, 0, 0.05);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #18181b;
+            font-size: 1.1rem;
+            transition: background 0.2s;
+        }
+
+        .close-modal-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .share-modal-preview {
+            background: #232738;
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .preview-logo-wrapper {
+            background: #191c2a;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .preview-logo {
+            width: 70%;
+            height: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .preview-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .preview-subtitle {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .share-options {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.25rem;
+            padding-bottom: 0.5rem;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .share-options::-webkit-scrollbar {
+            display: none;
+        }
+
+        .share-option-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: none;
+            text-decoration: none;
+            color: #18181b;
+            cursor: pointer;
+            min-width: 60px;
+        }
+
+        .share-icon-wrapper {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: transform 0.2s;
+        }
+
+        .share-option-btn:hover .share-icon-wrapper {
+            transform: scale(1.05);
+        }
+
+        .share-option-btn span {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .share-modal-footer {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-text h5 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .footer-text p {
+            font-size: 0.85rem;
+            color: #52525b;
+            line-height: 1.4;
+        }
+
+        .footer-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .footer-btn-primary {
+            flex: 1;
+            background: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 0.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+
+        .footer-btn-primary:hover {
+            background: #27272a;
+        }
+
+        /* Mobile specific iOS-like share modal adjustments */
+        @media (max-width: 599px) {
+            .share-modal-content {
+                padding: 1.25rem 1rem;
+                gap: 1rem;
+            }
+
+            .share-modal-header {
+                position: relative;
+                justify-content: center;
+            }
+
+            .share-modal-header h3 {
+                transform: none;
+                font-size: 1.05rem;
+            }
+
+            .close-modal-btn {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 28px;
+                height: 28px;
+                background: #f1f5f9;
+            }
+
+            .share-modal-preview {
+                background: transparent;
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .preview-logo-wrapper {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 0;
+                border: none;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            .preview-title,
+            .preview-subtitle {
+                display: none !important;
+            }
+
+            .share-options {
+                gap: 0.85rem;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+
+            .share-option-btn {
+                min-width: 56px;
+            }
+
+            .share-icon-wrapper {
+                width: 50px;
+                height: 50px;
+                font-size: 1.35rem;
+            }
+
+            .share-option-btn span {
+                font-size: 0.7rem;
+            }
+
+            .share-modal-footer {
+                padding-top: 0.75rem;
+            }
+
+            .footer-btn-primary {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+         INTRO OVERLAY — sits on top of everything
+         ============================================================ -->
+    <div id="intro-overlay">
+        <div class="intro-logo-wrapper" id="intro-logo-wrapper">
+            <img src="White Logo.png" alt="Qtonz Logo" class="intro-logo-img" id="intro-logo-img">
+            <div class="intro-ring" id="intro-ring"></div>
+            <div class="intro-ring-glow" id="intro-ring-glow"></div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         MAIN PROFILE CONTENT — underneath the overlay
+         ============================================================ -->
+    <div class="container">
+        <!-- Top Actions -->
+        <div class="top-actions" id="top-actions">
+            <div></div>
+            <a href="#" class="icon-btn" aria-label="Share">
+                <i class="ph ph-export"></i>
+            </a>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="profile">
+            <div class="profile-img-container" id="profile-img-container">
+                <div class="profile-img">
+                    <img src="White Logo.png" alt="Qtonz Logo" class="profile-logo"
+                        style="width: 75%; height: 75%; object-fit: contain;">
+                </div>
+            </div>
+            <h1 class="profile-title" id="profile-title">Qtonz Infosoft Pvt Ltd</h1>
+            <p class="profile-subtitle" id="profile-subtitle">India's Fastest Growing Mobile App & Software Development
+                Company</p>
+        </div>
+
+        <!-- Links Cards Container -->
+        <div class="links-container" id="links-container">
+
+            <!-- Google Reviews -->
+            <a href="https://www.google.com/search?q=qtonz#lrd=0x3959cbd300c53cfb:0x12bb26a4e9ff9c66,3,,,,"
+                target="_blank" class="link-card" id="card-google">
+                <div class="link-icon-wrapper brand-bg-google">
+                    <i class="ph-fill ph-google-logo brand-google"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">Google Reviews</div>
+                    <div class="link-subtitle"><i class="ph-fill ph-star" style="color: #fbbc05;"></i> 4.9 Google
+                        Reviews</div>
+                </div>
+                <div class="link-action">
+                    <i class="ph ph-caret-right"></i>
+                </div>
+            </a>
+
+            <!-- Qtonz Website -->
+            <a href="https://qtonz.com" target="_blank" class="link-card" id="card-website">
+                <div class="link-icon-wrapper brand-bg-qtonz">
+                    <i class="ph-fill ph-globe-hemisphere-west"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">Qtonz Infosoft Pvt Ltd</div>
+                    <div class="link-subtitle">Visit our official website</div>
+                </div>
+                <div class="link-action">
+                    <i class="ph ph-caret-right"></i>
+                </div>
+            </a>
+            <!-- LinkedIn -->
+            <div class="expandable-group" id="card-linkedin">
+                <button type="button" class="link-card main-toggle-btn" aria-expanded="false">
+                    <div class="link-icon-wrapper brand-bg-linkedin">
+                        <i class="ph-fill ph-linkedin-logo brand-linkedin"></i>
+                    </div>
+                    <div class="link-content">
+                        <div class="link-title">LinkedIn Profiles</div>
+                        <div class="link-subtitle">Meet our team members</div>
+                    </div>
+                    <div class="link-action toggle-icon">
+                        <i class="ph ph-caret-down"></i>
+                    </div>
+                </button>
+                <div class="expandable-content">
+                    <div class="sub-links-container">
+                        <!-- Profile 1 -->
+                        <a href="https://www.linkedin.com/company/qtonz-infosoft-pvt-ltd/" target="_blank"
+                            class="sub-link-card">
+                            <img src="https://media.licdn.com/dms/image/v2/C4D0BAQHtutX81lTPcQ/company-logo_200_200/company-logo_200_200/0/1656674129991/qtonz_infosoft_pvt_ltd_logo?e=1789603200&v=beta&t=EMMIpKMXI2fTt_sKfKl-QqHOhqh5gjtYOvfx8t7iacA"
+                                alt="Qtonz Infosoft Pvt. Ltd." class="sub-profile-img">
+                            <div class="link-content">
+                                <div class="link-title" style="font-size: 0.95rem;">Qtonz Infosoft Pvt. Ltd.</div>
+                                <div class="link-subtitle" style="font-size: 0.75rem;">Official Page</div>
+                            </div>
+                        </a>
+                        <!-- Profile 2-->
+                        <a href="https://www.linkedin.com/in/piyush-kasundra-1301234a/" target="_blank"
+                            class="sub-link-card">
+                            <img src="https://media.licdn.com/dms/image/v2/D4D03AQEC5uLvHQVluA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1731239415220?e=1789603200&v=beta&t=AyX9tUuZjsRsaOgvHKla5M7QT4vhkrnhdUgyDP1c65w"
+                                alt="Piyush Kasundra" class="sub-profile-img">
+                            <div class="link-content">
+                                <div class="link-title" style="font-size: 0.95rem;">Piyush Kasundra</div>
+                                <div class="link-subtitle" style="font-size: 0.75rem;">CEO / Founder</div>
+                            </div>
+                        </a>
+                        <!-- Profile 3 -->
+                        <a href="https://www.linkedin.com/in/hr-manushi-gajjar-92143522a/" target="_blank"
+                            class="sub-link-card">
+                            <img src="https://media.licdn.com/dms/image/v2/D4D03AQFoVMQ917NLow/profile-displayphoto-crop_800_800/B4DZ43BtitHIAI-/0/1779039657095?e=1789603200&v=beta&t=CQlIMZjJpKJumdxdmMFIyObC3_zUc0JOSvxq6DF4Fp0"
+                                alt="Manushi Gajjar" class="sub-profile-img">
+                            <div class="link-content">
+                                <div class="link-title" style="font-size: 0.95rem;">Manushi Gajjar</div>
+                                <div class="link-subtitle" style="font-size: 0.75rem;">HR & Admin Executive</div>
+                            </div>
+                        </a>
+                        <!-- Profile 4 -->
+                        <a href="https://www.linkedin.com/in/borichajignesh/" target="_blank" class="sub-link-card">
+                            <img src="https://media.licdn.com/dms/image/v2/D4D03AQHN5-7_5VhGZQ/profile-displayphoto-crop_800_800/B4DZq_b.lbIEAI-/0/1764148389058?e=1789603200&v=beta&t=h8ehDaGBN2sni11406R5-kV9vFCovN6fqEEs3MvNWro"
+                                alt="Jignesh Boricha" class="sub-profile-img">
+                            <div class="link-content">
+                                <div class="link-title" style="font-size: 0.95rem;">Jignesh Boricha</div>
+                                <div class="link-subtitle" style="font-size: 0.75rem;">COO</div>
+                            </div>
+                        </a>
+                        <!-- Profile 5 -->
+                        <a href="https://www.linkedin.com/in/divyesh-sarvaiya-233a86262/" target="_blank"
+                            class="sub-link-card">
+                            <img src="https://media.licdn.com/dms/image/v2/D5603AQHzy77ZYQkGIA/profile-displayphoto-shrink_800_800/B56ZYjZQBnGUAk-/0/1744350545247?e=1789603200&v=beta&t=1wlO1xSA4Ku49uh7lTvKNgc684joILHzPeOARDV8K98"
+                                alt="Divyesh Sarvaiya" class="sub-profile-img">
+                            <div class="link-content">
+                                <div class="link-title" style="font-size: 0.95rem;">Divyesh Sarvaiya</div>
+                                <div class="link-subtitle" style="font-size: 0.75rem;">Network Engineer</div>
+                            </div>
+                        </a>
+                        <!-- Profile 6 -->
+                        <a href="https://www.linkedin.com/in/astha-chothani-b4b639342/" target="_blank"
+                            class="sub-link-card">
+                            <img src="https://media.licdn.com/dms/image/v2/D4D03AQGFTqCAMesnNg/profile-displayphoto-crop_800_800/B4DZvz1TT2K0AM-/0/1769322397006?e=1789603200&v=beta&t=09Lms_FK-fOaVqLTMwdO7aXxr_sDEY6ncv11_wrkp2M"
+                                alt="Astha Chothani" class="sub-profile-img">
+                            <div class="link-content">
+                                <div class="link-title" style="font-size: 0.95rem;">Astha Chothani</div>
+                                <div class="link-subtitle" style="font-size: 0.75rem;">Video Editor</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- WhatsApp -->
+            <a href="https://wa.me/9798597982" target="_blank" class="link-card" id="card-whatsapp">
+                <div class="link-icon-wrapper brand-bg-whatsapp">
+                    <i class="ph-fill ph-whatsapp-logo brand-whatsapp"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">WhatsApp</div>
+                    <div class="link-subtitle">Chat with our experts</div>
+                </div>
+                <div class="link-action">
+                    <i class="ph ph-caret-right"></i>
+                </div>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/qtonzinfosoft/" target="_blank" class="link-card" id="card-instagram">
+                <div class="link-icon-wrapper brand-bg-instagram">
+                    <i class="ph-fill ph-instagram-logo brand-instagram"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">Instagram</div>
+                    <div class="link-subtitle">Follow our latest updates</div>
+                </div>
+                <div class="link-action">
+                    <i class="ph ph-caret-right"></i>
+                </div>
+            </a>
+
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@qtonzinfosoftpvtltd?sub_confirmation=1" target="_blank" class="link-card"
+                id="card-youtube">
+                <div class="link-icon-wrapper brand-bg-youtube">
+                    <i class="ph-fill ph-youtube-logo brand-youtube"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">YouTube</div>
+                    <div class="link-subtitle">Watch our tech tutorials & podcasts</div>
+                </div>
+                <div class="link-action">
+                    <i class="ph ph-caret-right"></i>
+                </div>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/Qtonz/" target="_blank" class="link-card" id="card-facebook">
+                <div class="link-icon-wrapper brand-bg-facebook">
+                    <i class="ph-fill ph-facebook-logo brand-facebook"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">Facebook</div>
+                    <div class="link-subtitle">Join our community</div>
+                </div>
+                <div class="link-action">
+                    <i class="ph ph-caret-right"></i>
+                </div>
+            </a>
+
+
+
+        </div>
+
+        <!-- Footer -->
+        <div class="footer" id="page-footer" style="padding-bottom: 1rem;">
+            <div class="footer-links" style="flex-direction: column; gap: 0.5rem; font-size: 0.85rem;">
+                <div style="font-weight: 600; color: var(--text-primary);">© <span id="current-year"></span> Qtonz
+                    Infosoft Pvt Ltd</div>
+                <div>Mobile App &amp; Software Development Company</div>
+                <div style="margin-top: 0.5rem;">
+                    <a href="https://qtonz.com/privacy-policy/" target="_blank">Privacy Policy</a> •
+                    <a href="https://qtonz.com/contact-us/" target="_blank">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="share-modal" class="share-modal-overlay">
+        <div class="share-modal-content">
+            <div class="share-modal-header">
+                <h3>Share Qtonz</h3>
+                <button class="close-modal-btn" aria-label="Close Share Modal">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+
+            <div class="share-modal-preview">
+                <div class="preview-logo-wrapper">
+                    <div class="preview-logo">
+                        <img src="White Logo.png" alt="Qtonz Logo">
+                    </div>
+                </div>
+                <h4 class="preview-title">@Qtonz Infosoft Pvt Ltd</h4>
+            </div>
+
+            <div class="share-options">
+                <button class="share-option-btn" id="copy-link-btn">
+                    <div class="share-icon-wrapper" style="background: #f3f4f6; color: #374151;">
+                        <i class="ph ph-link"></i>
+                    </div>
+                    <span>Copy Link</span>
+                </button>
+                <a href="#" class="share-option-btn" id="share-facebook" target="_blank">
+                    <div class="share-icon-wrapper" style="background: #1877F2; color: #ffffff;">
+                        <i class="ph-fill ph-facebook-logo"></i>
+                    </div>
+                    <span>Facebook</span>
+                </a>
+                <a href="#" class="share-option-btn" id="share-whatsapp" target="_blank">
+                    <div class="share-icon-wrapper" style="background: #25D366; color: #ffffff;">
+                        <i class="ph-fill ph-whatsapp-logo"></i>
+                    </div>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="#" class="share-option-btn" id="share-linkedin" target="_blank">
+                    <div class="share-icon-wrapper" style="background: #0A66C2; color: #ffffff;">
+                        <i class="ph-fill ph-linkedin-logo"></i>
+                    </div>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="#" class="share-option-btn" id="share-mail" target="_blank">
+                    <div class="share-icon-wrapper" style="background: #EA4335; color: #ffffff;">
+                        <i class="ph-fill ph-envelope"></i>
+                    </div>
+                    <span>Email</span>
+                </a>
+            </div>
+
+            <div class="share-modal-footer">
+                <div class="footer-text">
+                    <h5>Join Qtonz</h5>
+                    <p>Connect with India's Fastest Growing Mobile App & Software Development Company.</p>
+                </div>
+                <div class="footer-actions">
+                    <a href="https://qtonz.com" class="footer-btn-primary" target="_blank">Find out more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // =====================================================
+            // CINEMATIC INTRO ANIMATION CONTROLLER
+            // =====================================================
+            const overlay = document.getElementById('intro-overlay');
+            const logoWrapper = document.getElementById('intro-logo-wrapper');
+            const logoImg = document.getElementById('intro-logo-img');
+            const ring = document.getElementById('intro-ring');
+            const ringGlow = document.getElementById('intro-ring-glow');
+            const profileImg = document.getElementById('profile-img-container');
+
+            // Elements to stagger-reveal after transition
+            const revealSequence = [
+                document.getElementById('profile-title'),
+                document.getElementById('profile-subtitle'),
+                document.getElementById('top-actions'),
+                document.getElementById('card-google'),
+                document.getElementById('card-website'),
+                document.getElementById('card-whatsapp'),
+                document.getElementById('card-instagram'),
+                document.getElementById('card-youtube'),
+                document.getElementById('card-facebook'),
+                document.getElementById('card-linkedin'),
+                document.getElementById('page-footer'),
+            ].filter(Boolean);
+
+            // Utility: returns a promise that resolves after ms
+            const wait = (ms) => new Promise(r => setTimeout(r, ms));
+
+            // Utility: apply CSS transition + target values and return promise on transitionend
+            function animateElement(el, properties, duration, easing = 'cubic-bezier(0.4, 0, 0.2, 1)') {
+                return new Promise(resolve => {
+                    const props = Object.keys(properties);
+                    el.style.transition = props.map(p => `${p} ${duration}ms ${easing}`).join(', ');
+
+                    // Force reflow before applying target values
+                    void el.offsetHeight;
+
+                    props.forEach(p => {
+                        el.style[p] = properties[p];
+                    });
+
+                    const onEnd = () => {
+                        el.removeEventListener('transitionend', onEnd);
+                        resolve();
+                    };
+                    el.addEventListener('transitionend', onEnd);
+
+                    // Safety timeout
+                    setTimeout(resolve, duration + 100);
+                });
+            }
+
+            // Calculate target position for the profile avatar
+            function getProfileAvatarCenter() {
+                const rect = profileImg.getBoundingClientRect();
+                return {
+                    x: rect.left + rect.width / 2,
+                    y: rect.top + rect.height / 2,
+                    size: rect.width
+                };
+            }
+
+            async function runIntroAnimation() {
+                // ---- Phase 1: Black screen (300ms pause) ----
+                await wait(300);
+
+                // ---- Phase 2: Fade in the logo ----
+                logoImg.classList.add('visible');
+                await wait(900);
+
+                // ---- Phase 3: Show spinning ring ----
+                ring.classList.add('visible');
+                ringGlow.classList.add('visible');
+                await wait(2000); // spin for 2 seconds
+
+                // ---- Phase 4: Shrink logo + fade overlay ----
+                // We need the profile avatar's final position
+                // First, make profile-img-container visible but transparent so we can measure
+                profileImg.style.opacity = '0';
+                profileImg.style.visibility = 'visible';
+                profileImg.classList.add('revealed');
+
+                // Force layout to get accurate measurements
+                await wait(50);
+
+                const target = getProfileAvatarCenter();
+                const viewportCenterX = window.innerWidth / 2;
+                const viewportCenterY = window.innerHeight / 2;
+
+                const translateX = target.x - viewportCenterX;
+                const translateY = target.y - viewportCenterY;
+                const targetScale = target.size / 160; // 160px is original wrapper size
+
+                // Animate the wrapper: shrink and move to avatar position
+                const shrinkDuration = 1200;
+
+                // Start shrinking the logo wrapper
+                logoWrapper.style.transition = `transform ${shrinkDuration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+                void logoWrapper.offsetHeight;
+                logoWrapper.style.transform = `translate(${translateX}px, ${translateY}px) scale(${targetScale})`;
+
+                // Simultaneously fade the overlay
+                await wait(200); // slight delay for overlay fade
+                overlay.style.transition = `opacity ${shrinkDuration - 200}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+                overlay.style.opacity = '0';
+
+                await wait(shrinkDuration - 200);
+
+                // ---- Phase 5: Hide overlay, show profile avatar ----
+                overlay.style.pointerEvents = 'none';
+                overlay.style.display = 'none';
+
+                // Show the real profile image
+                profileImg.style.opacity = '1';
+                profileImg.style.transition = 'opacity 0.3s ease';
+
+                // ---- Phase 6: Stagger reveal all content ----
+                await wait(100);
+
+                for (let i = 0; i < revealSequence.length; i++) {
+                    const el = revealSequence[i];
+                    el.style.animationDelay = `${i * 80}ms`;
+                    el.classList.add('reveal-animate');
+                }
+            }
+
+            // Start the intro
+            runIntroAnimation();
+
+
+            // =====================================================
+            // EXISTING FUNCTIONALITY (Share, Toggle, etc.)
+            // =====================================================
+
+            // Share Modal Logic
+            const shareBtn = document.querySelector('.icon-btn[aria-label="Share"]');
+            const shareModal = document.getElementById('share-modal');
+            const closeModalBtn = document.querySelector('.close-modal-btn');
+
+            if (shareBtn && shareModal && closeModalBtn) {
+                shareBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    shareModal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent background scroll
+                });
+
+                closeModalBtn.addEventListener('click', () => {
+                    shareModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+
+                // Close on overlay click
+                shareModal.addEventListener('click', (e) => {
+                    if (e.target === shareModal) {
+                        shareModal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+
+            // Web Share API support or manual links
+            const currentUrl = window.location.href;
+            const shareTitle = "Qtonz Infosoft Pvt Ltd";
+            const shareText = "Connect with Qtonz Infosoft Pvt Ltd - India's Fastest Growing Mobile App & Software Development Company";
+
+            const copyLinkBtn = document.getElementById('copy-link-btn');
+            if (copyLinkBtn) {
+                copyLinkBtn.addEventListener('click', () => {
+                    const copySuccess = () => {
+                        const span = copyLinkBtn.querySelector('span');
+                        const originalText = span.innerText;
+                        span.innerText = 'Copied!';
+                        setTimeout(() => {
+                            span.innerText = originalText;
+                        }, 2000);
+                    };
+
+                    if (navigator.clipboard && window.isSecureContext) {
+                        navigator.clipboard.writeText(currentUrl).then(copySuccess).catch(err => {
+                            console.error('Could not copy text: ', err);
+                        });
+                    } else {
+                        // Fallback for non-secure contexts or older browsers
+                        const textArea = document.createElement("textarea");
+                        textArea.value = currentUrl;
+
+                        // Avoid scrolling to bottom
+                        textArea.style.top = "0";
+                        textArea.style.left = "0";
+                        textArea.style.position = "fixed";
+
+                        document.body.appendChild(textArea);
+                        textArea.focus();
+                        textArea.select();
+
+                        try {
+                            const successful = document.execCommand('copy');
+                            if (successful) {
+                                copySuccess();
+                            }
+                        } catch (err) {
+                            console.error('Fallback: Oops, unable to copy', err);
+                        }
+
+                        document.body.removeChild(textArea);
+                    }
+                });
+            }
+
+            // Set up share links
+            document.getElementById('share-facebook')?.setAttribute('href', `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`);
+            document.getElementById('share-whatsapp')?.setAttribute('href', `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + currentUrl)}`);
+            document.getElementById('share-linkedin')?.setAttribute('href', `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`);
+            document.getElementById('share-mail')?.setAttribute('href', `mailto:?subject=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent(shareText + '\n\n' + currentUrl)}`);
+
+            // Set dynamic year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Toggle expandable groups
+            const toggleBtns = document.querySelectorAll('.main-toggle-btn');
+            toggleBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const expanded = btn.getAttribute('aria-expanded') === 'true';
+                    btn.setAttribute('aria-expanded', !expanded);
+
+                    const content = btn.nextElementSibling;
+                    if (!expanded) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    } else {
+                        content.style.maxHeight = null;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
