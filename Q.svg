@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1296 1296">
+  <!-- Generator: Adobe Illustrator 29.7.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 8)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #fff;
+      }
+
+      .st1 {
+        fill: #223968;
+      }
+
+      .st1, .st2 {
+        display: none;
+      }
+
+      .st2, .st3 {
+        fill: #141f37;
+      }
+    </style>
+  </defs>
+  <rect class="st1" y="2" width="1296" height="1296"/>
+  <rect class="st2" width="1296" height="1296"/>
+  <g>
+    <rect class="st3" x="-1" y="1" width="1296" height="1296"/>
+    <g>
+      <path class="st0" d="M937.9,541.54l-229.31-229.31c-33.46-33.46-87.72-33.46-121.18,0l-229.31,229.31c-33.46,33.46-33.46,87.72,0,121.18l199.65,199.65v-106.45l-143.7-143.7c-5.58-5.58-5.58-14.62,0-20.2l223.85-223.85c5.58-5.58,14.62-5.58,20.2,0l223.85,223.85c5.58,5.58,5.58,14.62,0,20.2l-143.7,143.7v106.45l199.65-199.65c33.46-33.46,33.46-87.72,0-121.18Z"/>
+      <g>
+        <rect class="st0" x="604.15" y="906.77" width="87.7" height="87.7" rx="7.34" ry="7.34" transform="translate(861.99 -179.77) rotate(45)"/>
+        <rect class="st0" x="614.34" y="802.44" width="67.32" height="67.32" rx="7.34" ry="7.34" transform="translate(781.01 -213.32) rotate(45)"/>
+        <rect class="st0" x="624.16" y="719.04" width="47.69" height="47.69" rx="3.6" ry="3.6" transform="translate(715.09 -240.62) rotate(45)"/>
+        <rect class="st0" x="629.07" y="651.55" width="37.87" height="37.87" rx="3.6" ry="3.6" transform="translate(663.9 -261.83) rotate(45)"/>
+        <g>
+          <rect class="st0" x="604.15" y="484.29" width="87.7" height="87.7" rx="14.57" ry="14.57" transform="translate(-183.66 612.89) rotate(-45)"/>
+          <rect class="st0" x="525.8" y="556.69" width="87.7" height="87.7" rx="14.57" ry="14.57" transform="translate(-257.8 578.7) rotate(-45)"/>
+          <rect class="st0" x="682.5" y="556.69" width="87.7" height="87.7" rx="14.57" ry="14.57" transform="translate(-211.9 689.5) rotate(-45)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
