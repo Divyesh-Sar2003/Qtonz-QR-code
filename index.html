@@ -961,8 +961,8 @@
                 </div>
             </a>
             <!-- Google Reviews -->
-            <a href="https://www.google.com/maps/search/?api=1&query=Qtonz+Infosoft+Pvt+Ltd"
-                target="_blank" class="link-card" id="card-google">
+            <a href="https://www.google.com/search?q=Qtonz+Infosoft+Pvt+Ltd+reviews#lrd=0x3959cbd300c53cfb:0x12bb26a4e9ff9c66,1,,,,"
+                target="_blank"  class="link-card" id="card-google">
                 <div class="link-icon-wrapper brand-bg-google">
                     <i class="ph-fill ph-google-logo brand-google"></i>
                 </div>
@@ -993,7 +993,8 @@
                     <div class="sub-links-container">
                         <!-- Profile 1 -->
                         <a href="https://www.linkedin.com/company/qtonz-infosoft-pvt-ltd/" target="_blank"
-                            class="sub-link-card">
+                            rel="noopener noreferrer" class="sub-link-card" data-social="linkedin"
+                            data-app-url="linkedin://company/qtonz-infosoft-pvt-ltd" data-web-url="https://www.linkedin.com/company/qtonz-infosoft-pvt-ltd/">
                             <img src="https://media.licdn.com/dms/image/v2/C4D0BAQHtutX81lTPcQ/company-logo_200_200/company-logo_200_200/0/1656674129991/qtonz_infosoft_pvt_ltd_logo?e=1789603200&v=beta&t=EMMIpKMXI2fTt_sKfKl-QqHOhqh5gjtYOvfx8t7iacA"
                                 alt="Qtonz Infosoft Pvt. Ltd." class="sub-profile-img">
                             <div class="link-content">
@@ -1054,7 +1055,9 @@
                 </div>
             </div>
             <!-- Instagram -->
-            <a href="https://www.instagram.com/qtonzinfosoft/" target="_blank" class="link-card" id="card-instagram">
+            <a href="https://www.instagram.com/qtonzinfosoft/" target="_blank" rel="noopener noreferrer"
+                class="link-card social-link-card" id="card-instagram" data-social="instagram"
+                data-app-url="instagram://user?username=qtonzinfosoft" data-web-url="https://www.instagram.com/qtonzinfosoft/">
                 <div class="link-icon-wrapper brand-bg-instagram">
                     <i class="ph-fill ph-instagram-logo brand-instagram"></i>
                 </div>
@@ -1095,7 +1098,9 @@
             </a>
 
             <!-- Facebook -->
-            <a href="https://www.facebook.com/Qtonz/" target="_blank" class="link-card" id="card-facebook">
+            <a href="https://www.facebook.com/Qtonz/" target="_blank" rel="noopener noreferrer"
+                class="link-card social-link-card" id="card-facebook" data-social="facebook"
+                data-app-url="fb://profile/Qtonz" data-web-url="https://www.facebook.com/Qtonz/">
                 <div class="link-icon-wrapper brand-bg-facebook">
                     <i class="ph-fill ph-facebook-logo brand-facebook"></i>
                 </div>
@@ -1408,16 +1413,45 @@
             document.getElementById('share-linkedin')?.setAttribute('href', `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`);
             document.getElementById('share-mail')?.setAttribute('href', `mailto:?subject=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent(shareText + '\n\n' + currentUrl)}`);
 
+            // Social profile deep-link fallback: open app first when available; otherwise use the website URL.
+            function openSocialProfile(el, appUrl, webUrl) {
+                if (!el) return;
+                const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+                if (!isMobile || !appUrl) {
+                    window.open(webUrl, '_blank', 'noopener,noreferrer');
+                    return;
+                }
+
+                const appLink = document.createElement('a');
+                appLink.href = appUrl;
+                appLink.style.display = 'none';
+                document.body.appendChild(appLink);
+                appLink.click();
+                setTimeout(() => {
+                    window.open(webUrl, '_blank', 'noopener,noreferrer');
+                    document.body.removeChild(appLink);
+                }, 800);
+            }
+
+            document.querySelectorAll('.social-link-card').forEach((link) => {
+                const appUrl = link.dataset.appUrl;
+                const webUrl = link.dataset.webUrl || link.href;
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    openSocialProfile(link, appUrl, webUrl);
+                });
+            });
+
             // Set dynamic year in footer
             document.getElementById('current-year').textContent = new Date().getFullYear();
 
-            // Use a mobile-safe Google review URL: mobile browsers often ignore the old hash-based Google search URL.
+            // Use the business listing in Google Maps instead of a generic search result.
             const googleReviewCard = document.getElementById('card-google');
             if (googleReviewCard) {
                 const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
                 googleReviewCard.href = isMobile
-                    ? 'https://www.google.com/maps/search/?api=1&query=Qtonz+Infosoft+Pvt+Ltd'
-                    : 'https://www.google.com/search?q=Qtonz+Infosoft+Pvt+Ltd+reviews';
+                    ? 'https://www.google.com/search?q=Qtonz+Infosoft+Pvt+Ltd+reviews#lrd=0x3959cbd300c53cfb:0x12bb26a4e9ff9c66,1,,,,'
+                    : 'https://www.google.com/search?q=Qtonz+Infosoft+Pvt+Ltd+reviews#lrd=0x3959cbd300c53cfb:0x12bb26a4e9ff9c66,1,,,,';
             }
 
             // Toggle expandable groups
